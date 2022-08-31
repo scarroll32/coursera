@@ -1,0 +1,26 @@
+package main
+import (
+    "fmt"
+    "bufio"
+    "os"
+    "regexp"
+)
+
+func main() {
+  reader:= bufio.NewReader(os.Stdin)
+  re, _ := regexp.Compile(`^[i|I]+.*[a|A]+.*[n|N]+.*`)
+
+  fmt.Println("Please enter a string: ")
+  userInput, err := reader.ReadString('\n')
+
+  if err != nil {
+    fmt.Printf("Sorry, something went wrong. Please try again")
+  } else {
+    match := re.Match([]byte(userInput))
+    if match == true {
+      fmt.Println("Found!")
+    } else {
+      fmt.Println("Not Found!")
+    }
+  }
+}
